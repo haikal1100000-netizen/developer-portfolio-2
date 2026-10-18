@@ -52,6 +52,12 @@ const projects = [
     image: "/assets/zakat-fitrah.mp4",
     href: "https://aplikasi-zakat-fitrah.vercel.app/",
   },
+  {
+    title: "Personal Portfolio Website",
+    description: "Personal portfolio showcasing projects and experience",
+    image: "/assets/personal-portfolio.mp4",
+    href: "https://developer-portfolio-2-7uoo4nlzd-haikal1100000-netizens-projects.vercel.app/",
+  },
 ];
 
 const experiences = [
