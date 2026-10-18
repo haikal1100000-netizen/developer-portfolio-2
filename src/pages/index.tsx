@@ -62,7 +62,7 @@ const projects = [
     title: "This website",
     description: "My personal website",
     image: "/assets/portfolio.webm",
-    href: "https://github.com/wendoj/portfolio",
+    href: "https://github.com/haikal1100000-netizen/developer-portfolio-2",
   },
 ];
 
@@ -206,7 +206,7 @@ export default function Home() {
                   <br />
                 </span>
                 <span className="clash-grotesk text-gradient text-6xl 2xl:text-8xl">
-                  WendoJ.
+                  Muhammad Haikal Budi Kusnan
                 </span>
               </h1>
               <p
@@ -215,8 +215,9 @@ export default function Home() {
                 data-scroll-speed=".06"
                 className="mt-1 max-w-lg tracking-tight text-muted-foreground 2xl:text-xl"
               >
-                An experienced full-stack website developer with a passion for
-                crafting unique digital experiences.
+                Computer Engineering Student at Diponegoro University |
+                Interested in Software Development, Robotics, Embedded Systems
+                & Computer Networking
               </p>
             </div>
             <span

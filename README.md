@@ -2,7 +2,7 @@
 
 A sleek, modern, and responsive portfolio bootstrapped with [create-t3-app](https://create.t3.gg/).
 
-[Website Preview](https://github.com/wendoj/portfolio/assets/77996774/b73b02d7-0657-41e3-9124-e6d04b17fe93)
+[Website Preview](https://github.com/haikal1100000-netizen/portfolio/assets/77996774/b73b02d7-0657-41e3-9124-e6d04b17fe93)
 
 [🔗 Link to portfolio](https://wendoj.vercel.app)
 
@@ -28,10 +28,10 @@ Follow the steps below to clone and run this project on your local system:
 
 ```bash
 # Clone the repository
-$ git clone https://github.com/wendoj/developer-portfolio.git
+$ git clone https://github.com/haikal1100000-netizen/developer-portfolio-2.git
 
 # Navigate to the project directory
-$ cd developer-portfolio
+$ cd developer-portfolio-2
 
 # Remove current origin repository
 $ git remote remove origin
