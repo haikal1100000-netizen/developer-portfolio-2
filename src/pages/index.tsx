@@ -12,6 +12,9 @@ import {
   Github,
   Linkedin,
   Instagram,
+  Bot,
+  Zap,
+  Terminal,
 } from "lucide-react";
 import { TriangleDownIcon } from "@radix-ui/react-icons";
 import Spline from "@splinetool/react-spline";
@@ -339,7 +342,7 @@ export default function Home() {
                 <h2 className="text-3xl font-semibold tracking-tight text-foreground xl:text-4xl">
                   About Me
                 </h2>
-                <p className="max-w-5xl text-base leading-relaxed tracking-tight text-muted-foreground md:text-lg">
+                <p className="max-w-5xl text-[17px] leading-relaxed tracking-tight text-muted-foreground md:text-[19px]">
                   I am passionate about technology, problem-solving, and
                   innovation, with practical knowledge of Python, Java,
                   Object-Oriented Programming (OOP), HTML, CSS, and basic
@@ -371,6 +374,26 @@ export default function Home() {
               </div>
             </div>
             <div className={styles.aboutGallery}>
+              <div className={styles.aboutTechElements} aria-hidden="true">
+                <span className={cn(styles.aboutTechBadge, styles.aboutRobot)}>
+                  <Bot />
+                </span>
+                <span className={cn(styles.aboutTechBadge, styles.aboutElectric)}>
+                  <Zap />
+                </span>
+                <span className={cn(styles.aboutTechBadge, styles.aboutCode)}>
+                  <Code2 />
+                </span>
+                <span className={cn(styles.aboutTechBadge, styles.aboutNetwork)}>
+                  <Network />
+                </span>
+                <span className={cn(styles.aboutTechBadge, styles.aboutChip)}>
+                  <Cpu />
+                </span>
+                <span className={cn(styles.aboutTechBadge, styles.aboutTerminal)}>
+                  <Terminal />
+                </span>
+              </div>
               <div
                 className={cn(styles.aboutPhotoFrame, styles.aboutEventPhoto)}
               >
