@@ -28,9 +28,9 @@ import VanillaTilt from "vanilla-tilt";
 import { motion } from "framer-motion";
 
 const aboutStats = [
-  { label: "Years of experience", value: "3+" },
-  { label: "Technologies mastered", value: "5+" },
-  { label: "Companies worked with", value: "15+" },
+  { label: "Years of experience", value: "2+" },
+  { label: "Technologies mastered", value: "9+" },
+  { label: "Tech Bootcamps", value: "4+" },
 ];
 
 const projects = [
@@ -190,9 +190,14 @@ export default function Home() {
               data-scroll-speed=".09"
               className="flex flex-row items-center space-x-1.5"
             >
-              <span className={styles.pill}>next.js</span>
-              <span className={styles.pill}>tailwindcss</span>
-              <span className={styles.pill}>typescript</span>
+              <span className={styles.pill}>Python</span>
+              <span className={styles.pill}>Java</span>
+              <span className={styles.pill}>HTML</span>
+              <span className={styles.pill}>CSS</span>
+              <span className={styles.pill}>Basic Network Configuration</span>
+              <span className={styles.pill}>Network Troubleshooting</span>
+              <span className={styles.pill}>Git</span>
+              <span className={styles.pill}>Microsoft Office</span>
             </div>
             <div>
               <h1
@@ -270,19 +275,17 @@ export default function Home() {
             className="my-14 flex max-w-6xl flex-col justify-start space-y-10"
           >
             <h2 className="py-16  pb-2 text-3xl font-light leading-normal tracking-tighter text-foreground xl:text-[40px]">
-              I&apos;m an experienced full-stack developer proficient in{" "}
-              <Link
-                href="https://create.t3.gg/"
-                target="_blank"
-                className="underline"
-              >
-                TypeScript, Tailwind, and Next.js
-              </Link>{" "}
-              since 2021. My experience spans from startups to mid-sized
-              companies, where I&apos;ve been instrumental in the entire product
-              design process; from ideation and wireframing, through
-              prototyping, to the delivery of the final product, all while
-              efficiently collaborating with cross-functional teams.
+              I am passionate about technology, problem-solving, and innovation,
+              with practical knowledge of Python, Java, Object-Oriented
+              Programming (OOP), HTML, CSS, and basic network configuration and
+              troubleshooting. I also have experience using Git and Microsoft
+              Office applications, including Word, Excel, and PowerPoint.
+              Through leadership roles, organizational activities, and event
+              coordination, I have developed strong communication, teamwork,
+              analytical thinking, and attention to detail. I am eager to apply
+              my technical skills to real-world projects, gain hands-on
+              experience, and continuously grow both personally and
+              professionally.
             </h2>
             <div className="grid grid-cols-2 gap-8 xl:grid-cols-3">
               {aboutStats.map((stat) => (
