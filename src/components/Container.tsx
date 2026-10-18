@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import { useRouter } from "next/router";
 import Preloader from "@/components/Preloader";
 import styles from "@/styles/Container.module.css";
+import { Moon, Sun } from "lucide-react";
 
 type IconProps = {
   ["data-hide"]: boolean;
@@ -79,6 +80,7 @@ export default function Container(props: ContainerProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
 
   const { children, ...customMeta } = props;
   const router = useRouter();
@@ -103,6 +105,20 @@ export default function Container(props: ContainerProps) {
     };
   }, []);
 
+  useEffect(() => {
+    const savedTheme = window.localStorage.getItem("portfolio-theme");
+    const initialTheme = savedTheme === "light" ? "light" : "dark";
+    setTheme(initialTheme);
+    document.documentElement.dataset.theme = initialTheme;
+  }, []);
+
+  const toggleTheme = () => {
+    const nextTheme = theme === "dark" ? "light" : "dark";
+    setTheme(nextTheme);
+    document.documentElement.dataset.theme = nextTheme;
+    window.localStorage.setItem("portfolio-theme", nextTheme);
+  };
+
   // preloader effect
   useEffect(() => {
     setTimeout(() => {
@@ -117,7 +133,10 @@ export default function Container(props: ContainerProps) {
       <Head>
         <title>{meta.title}</title>
         <meta name="robots" content="follow, index" />
-        <meta name="theme-color" content="#7B82FE" />
+        <meta
+          name="theme-color"
+          content={theme === "dark" ? "#0b0b13" : "#f8fafc"}
+        />
         <meta content={meta.description} name="description" />
         <meta
           property="og:url"
@@ -148,7 +167,8 @@ export default function Container(props: ContainerProps) {
             : "bg-transparent",
         )}
       >
-        <div className="absolute inset-y-0 right-0 flex items-center sm:hidden">
+        <div className="absolute inset-y-0 right-4 flex items-center gap-2 sm:hidden">
+          <ThemeToggle theme={theme} onToggle={toggleTheme} />
           <button
             onClick={() => setIsOpen(!isOpen)}
             className={cn(
@@ -156,9 +176,11 @@ export default function Container(props: ContainerProps) {
               "inline-flex transform items-center justify-center rounded-md p-2 transition-all duration-300 focus:outline-none",
             )}
             aria-controls="mobile-menu"
-            aria-expanded="false"
+            aria-expanded={isOpen}
           >
-            <span className="sr-only">Open main menu</span>
+            <span className="sr-only">
+              {isOpen ? "Close main menu" : "Open main menu"}
+            </span>
             <MenuIcon data-hide={isOpen} />
             <CrossIcon data-hide={!isOpen} />
           </button>
@@ -179,6 +201,9 @@ export default function Container(props: ContainerProps) {
             />
           ))}
         </ul>
+        <div className="hidden sm:block">
+          <ThemeToggle theme={theme} onToggle={toggleTheme} />
+        </div>
 
         {/* Mobile menu */}
         <AnimatePresence key="menu">
@@ -193,15 +218,18 @@ export default function Container(props: ContainerProps) {
               {/* Expandable menu */}
               <div className="flex h-20 max-h-20 min-h-[60px] w-full items-center justify-between border-b pl-[22px] pr-1">
                 <span className="text-base font-medium lowercase">Menu</span>
-                <button
-                  onClick={() => setIsOpen(!isOpen)}
-                  className={styles.burger}
-                  aria-controls="mobile-menu"
-                  aria-expanded="false"
-                >
-                  <span className="sr-only">Open main menu</span>
-                  <CrossIcon data-hide={!isOpen} />
-                </button>
+                <div className="flex items-center gap-2">
+                  <ThemeToggle theme={theme} onToggle={toggleTheme} />
+                  <button
+                    onClick={() => setIsOpen(!isOpen)}
+                    className={styles.burger}
+                    aria-controls="mobile-menu"
+                    aria-expanded={isOpen}
+                  >
+                    <span className="sr-only">Close main menu</span>
+                    <CrossIcon data-hide={!isOpen} />
+                  </button>
+                </div>
               </div>
               <div className="flex h-full flex-col items-start justify-between overflow-y-auto">
                 {/* Links */}
@@ -252,11 +280,34 @@ export default function Container(props: ContainerProps) {
   );
 }
 
+function ThemeToggle({
+  theme,
+  onToggle,
+}: {
+  theme: "dark" | "light";
+  onToggle: () => void;
+}) {
+  const nextTheme = theme === "dark" ? "light" : "dark";
+  const Icon = theme === "dark" ? Sun : Moon;
+
+  return (
+    <button
+      type="button"
+      onClick={onToggle}
+      aria-label={`Switch to ${nextTheme} mode`}
+      title={`Switch to ${nextTheme} mode`}
+      className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border bg-background/80 text-foreground transition hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+    >
+      <Icon className="h-4 w-4" aria-hidden="true" />
+    </button>
+  );
+}
+
 function MenuIcon(props: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="absolute h-5 w-5 text-neutral-100"
+      className="absolute h-5 w-5 text-foreground"
       width="20"
       height="20"
       viewBox="0 0 20 20"
@@ -291,7 +342,7 @@ function MenuIcon(props: IconProps) {
 function CrossIcon(props: IconProps) {
   return (
     <svg
-      className="absolute h-5 w-5 text-neutral-100"
+      className="absolute h-5 w-5 text-foreground"
       viewBox="0 0 24 24"
       width="24"
       height="24"

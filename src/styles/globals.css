@@ -6,6 +6,7 @@
 
 @layer base {
   :root {
+    color-scheme: dark;
     --background: 240 27.9% 5.7%;
     --foreground: 210 40% 98%;
 
@@ -36,6 +37,36 @@
 
     --radius: 0.5rem;
   }
+
+  :root[data-theme="light"] {
+    color-scheme: light;
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 237 85% 62%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 214 80% 55%;
+    --secondary-foreground: 215 16% 42%;
+
+    --muted: 210 32% 93%;
+    --muted-foreground: 215 16% 42%;
+
+    --accent: 210 32% 93%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 62.8% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 24% 86%;
+    --input: 214 24% 86%;
+    --ring: 237 85% 62%;
+  }
 }
 
 /* global elements */
@@ -55,7 +86,7 @@
     @apply antialiased;
   }
   body {
-    @apply bg-background text-foreground cursor-wait;
+    @apply bg-background text-foreground cursor-wait transition-colors duration-300;
   }
   section {
     scroll-margin-top: 60px;
@@ -86,13 +117,11 @@
   .text-gradient {
     @apply bg-gradient-to-br from-primary to-secondary bg-clip-text text-transparent;
   }
-  .nav-active {
-    color: rgb(226 232 240) !important;
-    @apply text-sm lowercase tracking-tight text-slate-200;
-  }
   .nav-link {
-    /* Remove the styles from nav-link class */
-    @apply text-sm lowercase tracking-tight text-slate-400;
+    @apply text-sm lowercase tracking-tight text-muted-foreground;
+  }
+  .nav-active {
+    @apply text-sm lowercase tracking-tight text-foreground;
   }
 
   /* blinking animation */

@@ -9,10 +9,69 @@
 .intro h1 {
     @apply pt-2 leading-tight;
 }
+.heroPortrait {
+    position: absolute;
+    top: 50%;
+    right: 10%;
+    z-index: 15;
+    width: min(100%, 680px);
+    height: 515px;
+    transform: translateY(-50%);
+    background: url("/assets/hero-portrait.svg") right center / contain no-repeat;
+    opacity: 0.14;
+    mix-blend-mode: screen;
+    mask-image: linear-gradient(to left, #000 28%, transparent 100%);
+    pointer-events: none;
+}
+@media (max-width: 1279px) {
+    .heroPortrait {
+        top: 0;
+        height: min(100vh, 760px);
+        transform: none;
+        opacity: 0.08;
+    }
+}
+:global(html[data-theme="light"]) .heroPortrait {
+    mix-blend-mode: multiply;
+}
+.contactCard {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+}
+.contactCard::before {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    content: "";
+    pointer-events: none;
+}
+.contactCard::before {
+    background:
+        linear-gradient(
+            135deg,
+            hsl(var(--background) / 0.68),
+            hsl(var(--background) / 0.48)
+        ),
+        url("/assets/contact-background.jpeg") center 43% / cover no-repeat;
+}
+.contactCard > * {
+    position: relative;
+    z-index: 1;
+}
+:global(html[data-theme="light"]) .contactCard::before {
+    background:
+        linear-gradient(
+            135deg,
+            hsl(var(--background) / 0.58),
+            hsl(var(--background) / 0.4)
+        ),
+        url("/assets/contact-background.jpeg") center 43% / cover no-repeat;
+}
 
 /* scroll down */
 .scroll {
-    @apply transition duration-300 absolute bottom-6 left-1/2 mb-8 hidden -translate-x-1/2 transform-gpu flex-col items-center text-sm text-slate-400 xl:flex tracking-tight;
+    @apply transition duration-300 absolute bottom-6 left-1/2 mb-8 hidden -translate-x-1/2 transform-gpu flex-col items-center text-sm text-muted-foreground xl:flex tracking-tight;
 }
 .scroll--hidden {
     @apply opacity-0 transition duration-300;
@@ -20,7 +79,7 @@
 
 /* projects */
 .project-card {
-    @apply p-14 bg-white/[1%] rounded-md;
+    @apply p-14 bg-card rounded-md;
 }
 
 /* spline canvas */

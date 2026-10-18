@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/button";
 import {
   ChevronRight,
   Code2,
-  Frame,
-  SearchCheck,
-  Eye,
+  Network,
+  Cpu,
+  Wrench,
   MonitorSmartphone,
   Github,
   Linkedin,
@@ -71,34 +71,39 @@ const projects = [
 
 const services = [
   {
-    service: "Frontend Development",
+    service: "Programming & Software Development",
     description:
-      "Creating stellar user interfaces and web experiences using the latest technologies.",
+      "Building simple applications and software solutions using programming languages such as C++, Java, and Python.",
     icon: Code2,
+    category: "Programming",
   },
   {
-    service: "UX Design",
+    service: "Computer Networking",
     description:
-      "Building intuitive, user-centric designs that drive engagement and conversion.",
-    icon: Frame,
+      "Studying computer network configuration, TCP/IP fundamentals, IP addressing, and network troubleshooting.",
+    icon: Network,
+    category: "Networking",
   },
   {
-    service: "SEO Optimization",
+    service: "Web Development",
     description:
-      "Enhancing your website's visibility in search engines for increased organic traffic.",
-    icon: SearchCheck,
-  },
-  {
-    service: "Responsive Design",
-    description:
-      "Designing websites that look and perform equally well on all devices and screen sizes.",
+      "Creating simple websites using HTML, CSS, and JavaScript, with a focus on structure, visual design, and user experience.",
     icon: MonitorSmartphone,
+    category: "Web Development",
   },
   {
-    service: "Backend Development",
+    service: "Computer Systems & Digital Logic",
     description:
-      "Developing robust, scalable server-side logic for a wide range of web applications.",
-    icon: Eye,
+      "Studying digital systems, Boolean logic, logic circuits, and the fundamentals of embedded systems as part of Computer Engineering.",
+    icon: Cpu,
+    category: "Computer Engineering",
+  },
+  {
+    service: "IT Support & Troubleshooting",
+    description:
+      "Understanding the basics of identifying computer hardware and software issues, as well as the process of resolving technical problems.",
+    icon: Wrench,
+    category: "IT Support",
   },
 ];
 
@@ -184,9 +189,10 @@ export default function Home() {
         <section
           id="home"
           data-scroll-section
-          className="mt-40 flex w-full flex-col items-center xl:mt-0 xl:min-h-screen xl:flex-row xl:justify-between"
+          className="relative isolate mt-40 flex w-full flex-col items-center xl:mt-0 xl:min-h-screen xl:flex-row xl:justify-between"
         >
-          <div className={styles.intro}>
+          <div aria-hidden="true" className={styles.heroPortrait} />
+          <div className={cn(styles.intro, "relative z-20")}>
             <div className="flex flex-col items-start gap-1.5">
               <div
                 data-scroll
@@ -267,7 +273,7 @@ export default function Home() {
             data-scroll
             data-scroll-speed="-.01"
             id={styles["canvas-container"]}
-            className="mt-14 h-full w-full xl:mt-0"
+            className="relative z-10 mt-14 h-full w-full xl:mt-0"
           >
             <Suspense fallback={<span>Loading...</span>}>
               <Spline scene="/assets/scene.splinecode" />
@@ -373,7 +379,7 @@ export default function Home() {
                           </Link>
                         </CardHeader>
                         <CardContent className="absolute bottom-0 w-full bg-background/50 backdrop-blur">
-                          <CardTitle className="border-t border-white/5 p-4 text-base font-normal tracking-tighter">
+                          <CardTitle className="border-t border-border p-4 text-base font-normal tracking-tighter">
                             {project.description}
                           </CardTitle>
                         </CardContent>
@@ -430,7 +436,7 @@ export default function Home() {
               {services.map((service) => (
                 <div
                   key={service.service}
-                  className="flex flex-col items-start rounded-md bg-white/5 p-14 shadow-md backdrop-blur transition duration-300 hover:-translate-y-0.5 hover:bg-white/10 hover:shadow-md"
+                  className="flex flex-col items-start rounded-md border border-border bg-card p-14 shadow-md backdrop-blur transition duration-300 hover:-translate-y-0.5 hover:bg-accent hover:shadow-md"
                 >
                   <service.icon className="my-6 text-primary" size={20} />
                   <span className="text-lg tracking-tight text-foreground">
@@ -438,6 +444,9 @@ export default function Home() {
                   </span>
                   <span className="mt-2 tracking-tighter text-muted-foreground">
                     {service.description}
+                  </span>
+                  <span className="mt-3 rounded-full bg-muted px-2.5 py-1 text-xs font-medium text-foreground/80">
+                    {service.category}
                   </span>
                 </div>
               ))}
@@ -451,7 +460,10 @@ export default function Home() {
             data-scroll
             data-scroll-speed=".4"
             data-scroll-position="top"
-            className="flex flex-col items-center justify-center rounded-2xl border border-white/10 bg-gradient-to-br from-primary/[6.5%] to-white/[2%] px-6 py-14 text-center shadow-xl shadow-black/20 sm:px-10 sm:py-16 xl:py-20"
+            className={cn(
+              styles.contactCard,
+              "flex flex-col items-center justify-center rounded-2xl border border-border bg-gradient-to-br from-primary/[6.5%] to-background px-6 py-14 text-center shadow-xl shadow-black/10 sm:px-10 sm:py-16 xl:py-20",
+            )}
           >
             <div className="mb-6 flex w-full max-w-md items-center gap-5">
               <span className="h-px flex-1 bg-border" />
@@ -476,7 +488,7 @@ export default function Home() {
                 href="https://github.com/haikal1100000-netizen"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex min-h-36 flex-col items-center justify-center gap-4 rounded-2xl border border-white/10 bg-background/40 p-6 transition hover:-translate-y-1 hover:border-primary/40 hover:bg-white/5"
+                className="flex min-h-36 flex-col items-center justify-center gap-4 rounded-2xl border border-border bg-card/70 p-6 transition hover:-translate-y-1 hover:border-primary/40 hover:bg-accent"
               >
                 <Github className="h-9 w-9" aria-hidden="true" />
                 <span className="font-medium">GitHub</span>
@@ -485,7 +497,7 @@ export default function Home() {
                 href="https://www.linkedin.com/in/muhammad-haikal-budi-kusnan-7897a1375"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex min-h-36 flex-col items-center justify-center gap-4 rounded-2xl border border-white/10 bg-background/40 p-6 transition hover:-translate-y-1 hover:border-primary/40 hover:bg-white/5"
+                className="flex min-h-36 flex-col items-center justify-center gap-4 rounded-2xl border border-border bg-card/70 p-6 transition hover:-translate-y-1 hover:border-primary/40 hover:bg-accent"
               >
                 <Linkedin className="h-9 w-9" aria-hidden="true" />
                 <span className="font-medium">LinkedIn</span>
@@ -494,7 +506,7 @@ export default function Home() {
                 href="https://www.instagram.com/vernativenitch_/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex min-h-36 flex-col items-center justify-center gap-4 rounded-2xl border border-white/10 bg-background/40 p-6 transition hover:-translate-y-1 hover:border-primary/40 hover:bg-white/5"
+                className="flex min-h-36 flex-col items-center justify-center gap-4 rounded-2xl border border-border bg-card/70 p-6 transition hover:-translate-y-1 hover:border-primary/40 hover:bg-accent"
               >
                 <Instagram className="h-9 w-9" aria-hidden="true" />
                 <span className="font-medium">Instagram</span>
