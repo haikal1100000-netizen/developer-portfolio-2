@@ -38,34 +38,59 @@ const aboutStats = [
 
 const projects = [
   {
-    title: "Profil Bandung",
-    description: "Website profil Bandung",
-    image: "/assets/unqueue.webm",
+    title: "To-Do List Management",
+    description: "TaskFlow — smart to-do list manager",
+    image: "/assets/profil-bandung.mp4",
     href: "https://profilbandung.vercel.app/",
   },
   {
     title: "Aplikasi Zakat Fitrah",
     description: "Aplikasi pengelolaan zakat fitrah",
-    image: "/assets/infinitevps.webm",
+    image: "/assets/zakat-fitrah.mp4",
     href: "https://aplikasi-zakat-fitrah.vercel.app/",
   },
+];
+
+const experiences = [
   {
-    title: "TranslateBot",
-    description: "Powerful Multilingual Translation Bot for Discord",
-    image: "/assets/translate_bot.webm",
-    href: "https://translatebot.app/",
+    title: "HIMASKOM",
+    role: "Research and Technology Division Organization",
+    organization: "Diponegoro University",
+    image: "/assets/himaskom.jpeg",
+    imageAlt: "HIMASKOM members at an event",
+    href: "https://www.instagram.com/himaskomundip?utm_source=ig_web_button_share_sheet&exln=ZDNlZDc0MzIxNw==",
+    description:
+      "Supports activities in the fields of research and technology, including the Computer Engineering Study Club program, designed to assist students in preparing for coursework and examinations.",
   },
   {
-    title: "Wrona",
-    description: "Robotics-focused technology company",
-    image: "/assets/wrona.jpeg",
-    href: "https://www.wrona.com/",
+    title: "Paskibraka",
+    role: "Extracurricular Leader",
+    organization: "SMA Negeri 1 Sooko",
+    image: "/assets/paskibraka.jpeg",
+    imageAlt: "Paskibraka team members in uniform",
+    href: "https://www.instagram.com/pasbrasoo_jaya?utm_source=ig_web_button_share_sheet&obrf=ZDNlZDc0MzIxNw==",
+    description:
+      "Led the Paskibraka extracurricular program, fostering discipline, team coordination, a sense of responsibility, and leadership skills.",
   },
   {
-    title: "This website",
-    description: "My personal website",
-    image: "/assets/portfolio.webm",
-    href: "https://github.com/haikal1100000-netizen/developer-portfolio-2",
+    title: "Steering Committee Member",
+    role: "Paskibraka",
+    organization: "SMA Negeri 1 Sooko",
+    image: "/assets/paskibraka-steering-committee.jpeg",
+    imageAlt: "Paskibraka steering committee members in uniform",
+    href: "https://www.instagram.com/osissman1sooko?utm_source=ig_web_button_share_sheet&mdxt=ZDNlZDc0MzIxNw==",
+    description:
+      "Contributed to organizational planning, coordination, and evaluation of activities while supporting team collaboration and the successful execution of programs.",
+  },
+  {
+    title: "Jelajah Diponegoro 2026",
+    role: "Event Committee Candidate",
+    organization: "Diponegoro University",
+    image: "/assets/jelajah-diponegoro.jpeg",
+    imageAlt: "Jelajah Diponegoro event committee members",
+    href: "https://www.instagram.com/jelajahdiponegoro?utm_source=ig_web_button_share_sheet&vrfl=ZDNlZDc0MzIxNw==",
+    description:
+      'Experience as a committee member for the "Jelajah Diponegoro 2026" event, themed "Step Into the Universe, Step Into Your Future."',
   },
 ];
 
@@ -113,6 +138,10 @@ export default function Home() {
   const [carouselApi, setCarouselApi] = useState<CarouselApi | null>(null);
   const [current, setCurrent] = useState<number>(0);
   const [count, setCount] = useState<number>(0);
+  const [experienceCarouselApi, setExperienceCarouselApi] =
+    useState<CarouselApi | null>(null);
+  const [currentExperience, setCurrentExperience] = useState<number>(0);
+  const [experienceCount, setExperienceCount] = useState<number>(0);
 
   // handle scroll
   useEffect(() => {
@@ -167,9 +196,22 @@ export default function Home() {
     });
   }, [carouselApi]);
 
+  useEffect(() => {
+    if (!experienceCarouselApi) return;
+
+    setExperienceCount(experienceCarouselApi.scrollSnapList().length);
+    setCurrentExperience(experienceCarouselApi.selectedScrollSnap() + 1);
+
+    experienceCarouselApi.on("select", () => {
+      setCurrentExperience(experienceCarouselApi.selectedScrollSnap() + 1);
+    });
+  }, [experienceCarouselApi]);
+
   // card hover effect
   useEffect(() => {
-    const tilt: HTMLElement[] = Array.from(document.querySelectorAll("#tilt"));
+    const tilt: HTMLElement[] = Array.from(
+      document.querySelectorAll(".tilt-card"),
+    );
     VanillaTilt.init(tilt, {
       speed: 300,
       glare: true,
@@ -339,7 +381,7 @@ export default function Home() {
           </div>
           <div data-scroll data-scroll-speed=".4" className="my-64">
             <span className="text-gradient clash-grotesk text-sm font-semibold tracking-tighter">
-              ✨ Projects & Experiences
+              ✨ Portfolio
             </span>
             <h2 className="mt-3 text-4xl font-semibold tracking-tight tracking-tighter xl:text-6xl">
               Building skills. Creating impact.
@@ -351,21 +393,27 @@ export default function Home() {
               Engineering student at Diponegoro University.
             </p>
 
-            {/* Carousel */}
+            <h3 className="mt-12 text-2xl font-semibold tracking-tight xl:text-3xl">
+              Projects
+            </h3>
+
+            {/* Projects carousel */}
             <div className="mt-14">
               <Carousel setApi={setCarouselApi} className="w-full">
                 <CarouselContent>
                   {projects.map((project) => (
                     <CarouselItem key={project.title} className="md:basis-1/2">
-                      <Card id="tilt">
+                      <Card className="tilt-card">
                         <CardHeader className="p-0">
                           <Link href={project.href} target="_blank" passHref>
-                            {project.image.endsWith(".webm") ? (
+                            {/\.(webm|mp4)$/i.test(project.image) ? (
                               <video
                                 src={project.image}
                                 autoPlay
                                 loop
                                 muted
+                                playsInline
+                                preload="metadata"
                                 className="aspect-video h-full w-full rounded-t-md bg-primary object-cover"
                               />
                             ) : (
@@ -397,6 +445,70 @@ export default function Home() {
                   {current} / {count}
                 </span>{" "}
                 projects
+              </div>
+            </div>
+
+            <h3 className="mt-16 text-2xl font-semibold tracking-tight xl:text-3xl">
+              Experiences
+            </h3>
+
+            {/* Experiences carousel */}
+            <div className="mt-8">
+              <Carousel
+                setApi={setExperienceCarouselApi}
+                className="w-full"
+              >
+                <CarouselContent>
+                  {experiences.map((experience) => (
+                    <CarouselItem
+                      key={`${experience.title}-${experience.organization}`}
+                      className="md:basis-1/2"
+                    >
+                      <Link
+                        href={experience.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block h-full rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      >
+                        <Card className="tilt-card flex min-h-[300px] flex-col justify-between bg-card/70 p-6 transition-colors hover:border-primary/50 sm:p-8">
+                          {experience.image && (
+                            <Image
+                              src={experience.image}
+                              alt={experience.imageAlt}
+                              width={768}
+                              height={1024}
+                              className="mx-auto mb-6 h-64 w-auto max-w-full rounded-lg object-contain"
+                            />
+                          )}
+                          <CardHeader className="space-y-3 p-0">
+                            <span className="w-fit rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+                              {experience.role}
+                            </span>
+                            <CardTitle className="text-xl leading-tight">
+                              {experience.title}
+                            </CardTitle>
+                            <p className="text-sm font-medium text-muted-foreground">
+                              {experience.organization}
+                            </p>
+                          </CardHeader>
+                          <CardContent className="p-0 pt-6">
+                            <p className="leading-relaxed text-muted-foreground">
+                              {experience.description}
+                            </p>
+                          </CardContent>
+                        </Card>
+                      </Link>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious />
+                <CarouselNext />
+              </Carousel>
+              <div className="py-2 text-center text-sm text-muted-foreground">
+                <span className="font-semibold">
+                  {currentExperience} / {experienceCount}
+                </span>{" "}
+                experiences
               </div>
             </div>
           </div>

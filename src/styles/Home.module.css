@@ -18,7 +18,7 @@
     height: 515px;
     transform: translateY(-50%);
     background: url("/assets/hero-portrait.svg") right center / contain no-repeat;
-    opacity: 0.14;
+    opacity: 0.3;
     mix-blend-mode: screen;
     mask-image: linear-gradient(to left, #000 28%, transparent 100%);
     pointer-events: none;
@@ -28,7 +28,7 @@
         top: 0;
         height: min(100vh, 760px);
         transform: none;
-        opacity: 0.08;
+        opacity: 0.2;
     }
 }
 :global(html[data-theme="light"]) .heroPortrait {
