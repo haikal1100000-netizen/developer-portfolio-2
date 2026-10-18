@@ -329,35 +329,84 @@ export default function Home() {
             data-scroll
             data-scroll-speed=".4"
             data-scroll-position="top"
-            className="my-14 flex max-w-6xl flex-col justify-start space-y-10"
+            className={cn(
+              "my-14 max-w-6xl",
+              styles.aboutSection
+            )}
           >
-            <h2 className="py-16  pb-2 text-3xl font-light leading-normal tracking-tighter text-foreground xl:text-[40px]">
-              I am passionate about technology, problem-solving, and innovation,
-              with practical knowledge of Python, Java, Object-Oriented
-              Programming (OOP), HTML, CSS, and basic network configuration and
-              troubleshooting. I also have experience using Git and Microsoft
-              Office applications, including Word, Excel, and PowerPoint.
-              Through leadership roles, organizational activities, and event
-              coordination, I have developed strong communication, teamwork,
-              analytical thinking, and attention to detail. I am eager to apply
-              my technical skills to real-world projects, gain hands-on
-              experience, and continuously grow both personally and
-              professionally.
-            </h2>
-            <div className="grid grid-cols-2 gap-8 xl:grid-cols-3">
-              {aboutStats.map((stat) => (
-                <div
-                  key={stat.label}
-                  className="flex flex-col items-center text-center xl:items-start xl:text-start"
-                >
-                  <span className="clash-grotesk text-gradient text-4xl font-semibold tracking-tight xl:text-6xl">
-                    {stat.value}
-                  </span>
-                  <span className="tracking-tight text-muted-foreground xl:text-lg">
-                    {stat.label}
-                  </span>
-                </div>
-              ))}
+            <div className={styles.aboutContent}>
+              <div className="space-y-4">
+                <h2 className="text-3xl font-semibold tracking-tight text-foreground xl:text-4xl">
+                  About Me
+                </h2>
+                <p className="max-w-5xl text-base leading-relaxed tracking-tight text-muted-foreground md:text-lg">
+                  I am passionate about technology, problem-solving, and
+                  innovation, with practical knowledge of Python, Java,
+                  Object-Oriented Programming (OOP), HTML, CSS, and basic
+                  network configuration and troubleshooting. I also have
+                  experience using Git and Microsoft Office applications,
+                  including Word, Excel, and PowerPoint. Through leadership
+                  roles, organizational activities, and event coordination, I
+                  have developed strong communication, teamwork, analytical
+                  thinking, and attention to detail. I am eager to apply my
+                  technical skills to real-world projects, gain hands-on
+                  experience, and continuously grow both personally and
+                  professionally.
+                </p>
+              </div>
+              <div className="grid grid-cols-2 gap-8 xl:grid-cols-3">
+                {aboutStats.map((stat) => (
+                  <div
+                    key={stat.label}
+                    className="flex flex-col items-center text-center xl:items-start xl:text-start"
+                  >
+                    <span className="clash-grotesk text-gradient text-4xl font-semibold tracking-tight xl:text-6xl">
+                      {stat.value}
+                    </span>
+                    <span className="tracking-tight text-muted-foreground xl:text-lg">
+                      {stat.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className={styles.aboutGallery}>
+              <div
+                className={cn(styles.aboutPhotoFrame, styles.aboutEventPhoto)}
+              >
+                <Image
+                  src="/assets/about-event.jpeg"
+                  alt="At a technology event"
+                  fill
+                  sizes="(max-width: 767px) 160px, 210px"
+                  className={styles.aboutPhotoImage}
+                />
+              </div>
+              <div
+                className={cn(styles.aboutPhotoFrame, styles.aboutCampusPhoto)}
+              >
+                <Image
+                  src="/assets/about-campus.jpeg"
+                  alt="Standing in front of a university building"
+                  fill
+                  sizes="(max-width: 767px) 170px, 220px"
+                  className={styles.aboutPhotoImage}
+                />
+              </div>
+              <div
+                className={cn(
+                  styles.aboutPhotoFrame,
+                  styles.aboutPortraitPhoto
+                )}
+              >
+                <Image
+                  src="/assets/about-portrait.png"
+                  alt="Portrait"
+                  fill
+                  sizes="(max-width: 767px) 140px, 180px"
+                  className={styles.aboutPortraitImage}
+                />
+              </div>
             </div>
           </div>
         </section>

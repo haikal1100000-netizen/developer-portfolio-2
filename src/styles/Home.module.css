@@ -23,12 +23,120 @@
     mask-image: linear-gradient(to left, #000 28%, transparent 100%);
     pointer-events: none;
 }
+.aboutSection {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+.aboutContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2.5rem;
+}
+.aboutGallery {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 780px;
+    margin-inline: auto;
+}
+.aboutPhotoFrame {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: clamp(140px, 28vw, 260px);
+    padding: 8px;
+    border: 1px solid hsl(var(--primary) / 0.6);
+    border-radius: 1.35rem;
+    background: linear-gradient(145deg, #818cf8, #22d3ee 52%, #c084fc);
+    box-shadow:
+        0 16px 42px rgb(79 70 229 / 0.28),
+        0 0 0 4px hsl(var(--primary) / 0.12);
+    transition:
+        transform 300ms ease,
+        box-shadow 300ms ease;
+}
+.aboutPhotoFrame:hover {
+    box-shadow:
+        0 22px 55px rgb(79 70 229 / 0.38),
+        0 0 0 7px hsl(var(--primary) / 0.15);
+    transform: translateY(-5px) rotate(0);
+}
+.aboutEventPhoto {
+    transform: rotate(-6deg);
+    animation: aboutPhotoFloat 5s ease-in-out infinite;
+}
+.aboutCampusPhoto {
+    transform: rotate(5deg);
+    animation: aboutPhotoFloat 5.8s ease-in-out -1.2s infinite;
+}
+.aboutPortraitPhoto {
+    transform: rotate(2deg);
+    animation: aboutPhotoFloat 5.3s ease-in-out -2.4s infinite;
+}
+.aboutPhotoFrame:hover {
+    animation-play-state: paused;
+}
+@keyframes aboutPhotoFloat {
+    0%,
+    100% {
+        translate: 0 0;
+    }
+    50% {
+        translate: 0 -9px;
+    }
+}
+.aboutPhotoFrame::after {
+    position: absolute;
+    inset: 0;
+    border: 1px solid hsl(var(--background) / 0.5);
+    border-radius: 1rem;
+    content: "";
+    pointer-events: none;
+}
+.aboutPhotoImage {
+    object-fit: cover;
+    border-radius: 1rem;
+}
+.aboutPortraitImage {
+    object-fit: contain;
+    object-position: center bottom;
+    border-radius: 1rem;
+}
 @media (max-width: 1279px) {
     .heroPortrait {
         top: 0;
         height: min(100vh, 760px);
         transform: none;
         opacity: 0.2;
+    }
+}
+@media (max-width: 767px) {
+    .aboutSection {
+        gap: 2rem;
+    }
+    .aboutGallery {
+        gap: 0.65rem;
+    }
+    .aboutPhotoFrame {
+        height: clamp(120px, 36vw, 190px);
+        padding: 5px;
+        border-radius: 1rem;
+    }
+    .aboutPhotoFrame::after,
+    .aboutPhotoImage,
+    .aboutPortraitImage {
+        border-radius: 0.7rem;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .aboutEventPhoto,
+    .aboutCampusPhoto,
+    .aboutPortraitPhoto {
+        animation: none;
     }
 }
 :global(html[data-theme="light"]) .heroPortrait {
