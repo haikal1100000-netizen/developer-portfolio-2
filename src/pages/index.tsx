@@ -9,6 +9,9 @@ import {
   SearchCheck,
   Eye,
   MonitorSmartphone,
+  Github,
+  Linkedin,
+  Instagram,
 } from "lucide-react";
 import { TriangleDownIcon } from "@radix-ui/react-icons";
 import Spline from "@splinetool/react-spline";
@@ -184,20 +187,26 @@ export default function Home() {
           className="mt-40 flex w-full flex-col items-center xl:mt-0 xl:min-h-screen xl:flex-row xl:justify-between"
         >
           <div className={styles.intro}>
-            <div
-              data-scroll
-              data-scroll-direction="horizontal"
-              data-scroll-speed=".09"
-              className="flex flex-row items-center space-x-1.5"
-            >
-              <span className={styles.pill}>Python</span>
-              <span className={styles.pill}>Java</span>
-              <span className={styles.pill}>HTML</span>
-              <span className={styles.pill}>CSS</span>
-              <span className={styles.pill}>Basic Network Configuration</span>
-              <span className={styles.pill}>Network Troubleshooting</span>
-              <span className={styles.pill}>Git</span>
-              <span className={styles.pill}>Microsoft Office</span>
+            <div className="flex flex-col items-start gap-1.5">
+              <div
+                data-scroll
+                data-scroll-direction="horizontal"
+                data-scroll-speed=".09"
+                className="flex flex-wrap items-center gap-1.5"
+              >
+                <span className={styles.pill}>Python</span>
+                <span className={styles.pill}>Java</span>
+                <span className={styles.pill}>HTML</span>
+                <span className={styles.pill}>CSS</span>
+                <span className={styles.pill}>Git</span>
+              </div>
+              <div className="flex flex-wrap items-center gap-1.5">
+                <span className={styles.pill}>
+                  Basic Network Configuration
+                </span>
+                <span className={styles.pill}>Network Troubleshooting</span>
+                <span className={styles.pill}>Microsoft Office</span>
+              </div>
             </div>
             <div>
               <h1
@@ -231,7 +240,7 @@ export default function Home() {
               data-scroll-speed=".06"
               className="flex flex-row items-center space-x-1.5 pt-6"
             >
-              <Link href="mailto:wendoj@proton.me" passHref>
+              <Link href="mailto:haikal1100000@gmail.com" passHref>
                 <Button>
                   Get in touch <ChevronRight className="ml-1 h-4 w-4" />
                 </Button>
@@ -405,15 +414,17 @@ export default function Home() {
             >
               <div className="flex flex-col py-6 xl:p-6">
                 <h2 className="text-4xl font-medium tracking-tight">
-                  Need more info?
+                  Need a tech solution?
                   <br />
                   <span className="text-gradient clash-grotesk tracking-normal">
-                    I got you.
+                    Let&apos;s build it.
                   </span>
                 </h2>
                 <p className="mt-2 tracking-tighter text-secondary-foreground">
-                  Here are some of the services I offer. If you have any
-                  questions, feel free to reach out.
+                  I&apos;m a Computer Engineering student passionate about
+                  programming, computer networks, and technology. I&apos;m
+                  always learning, exploring new ideas, and building projects
+                  to develop my technical skills.
                 </p>
               </div>
               {services.map((service) => (
@@ -440,18 +451,57 @@ export default function Home() {
             data-scroll
             data-scroll-speed=".4"
             data-scroll-position="top"
-            className="flex flex-col items-center justify-center rounded-lg bg-gradient-to-br from-primary/[6.5%] to-white/5 px-8 py-16 text-center xl:py-24"
+            className="flex flex-col items-center justify-center rounded-2xl border border-white/10 bg-gradient-to-br from-primary/[6.5%] to-white/[2%] px-6 py-14 text-center shadow-xl shadow-black/20 sm:px-10 sm:py-16 xl:py-20"
           >
-            <h2 className="text-4xl font-medium tracking-tighter xl:text-6xl">
-              Let&apos;s work{" "}
-              <span className="text-gradient clash-grotesk">together.</span>
+            <div className="mb-6 flex w-full max-w-md items-center gap-5">
+              <span className="h-px flex-1 bg-border" />
+              <span className="text-xs font-medium tracking-[0.2em] text-muted-foreground">
+                CONTACT
+              </span>
+              <span className="h-px flex-1 bg-border" />
+            </div>
+            <h2 className="text-4xl font-medium tracking-tighter sm:text-5xl xl:text-6xl">
+              Let&apos;s{" "}
+              <span className="text-gradient clash-grotesk">Connect</span>
             </h2>
-            <p className="mt-1.5 text-base tracking-tight text-muted-foreground xl:text-lg">
-              I&apos;m currently available for freelance work and open to
-              discussing new projects.
+            <p className="mt-5 max-w-3xl text-base leading-relaxed tracking-tight text-muted-foreground sm:text-lg">
+              Interested in technology, software development, and computer
+              networking? I&apos;m always eager to learn new things, explore
+              innovative ideas, and connect with people who share similar
+              interests. Feel free to reach out for collaboration, discussions,
+              or new opportunities!
             </p>
-            <Link href="mailto:wendoj@proton.me" passHref>
-              <Button className="mt-6">Get in touch</Button>
+            <div className="mt-10 grid w-full max-w-3xl grid-cols-1 gap-4 sm:grid-cols-3">
+              <Link
+                href="https://github.com/haikal1100000-netizen"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex min-h-36 flex-col items-center justify-center gap-4 rounded-2xl border border-white/10 bg-background/40 p-6 transition hover:-translate-y-1 hover:border-primary/40 hover:bg-white/5"
+              >
+                <Github className="h-9 w-9" aria-hidden="true" />
+                <span className="font-medium">GitHub</span>
+              </Link>
+              <Link
+                href="https://www.linkedin.com/in/muhammad-haikal-budi-kusnan-7897a1375"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex min-h-36 flex-col items-center justify-center gap-4 rounded-2xl border border-white/10 bg-background/40 p-6 transition hover:-translate-y-1 hover:border-primary/40 hover:bg-white/5"
+              >
+                <Linkedin className="h-9 w-9" aria-hidden="true" />
+                <span className="font-medium">LinkedIn</span>
+              </Link>
+              <Link
+                href="https://www.instagram.com/vernativenitch_/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex min-h-36 flex-col items-center justify-center gap-4 rounded-2xl border border-white/10 bg-background/40 p-6 transition hover:-translate-y-1 hover:border-primary/40 hover:bg-white/5"
+              >
+                <Instagram className="h-9 w-9" aria-hidden="true" />
+                <span className="font-medium">Instagram</span>
+              </Link>
+            </div>
+            <Link href="mailto:haikal1100000@gmail.com" passHref>
+              <Button className="mt-8">Get in touch</Button>
             </Link>
           </div>
         </section>

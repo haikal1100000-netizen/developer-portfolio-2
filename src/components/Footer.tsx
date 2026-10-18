@@ -44,13 +44,13 @@ export default function Footer() {
           </span>
         </span>
         <Link
-          href="mailto:wendoj@proton.me"
+          href="mailto:haikal1100000@gmail.com"
           passHref
           className="text-xs text-muted-foreground hover:text-foreground"
         >
           <Button variant={"outline"}>
             <MailIcon className="h-4 w-4 md:mr-2" />
-            <span className="hidden md:flex">wendoj@proton.me</span>
+            <span className="hidden md:flex">haikal1100000@gmail.com</span>
           </Button>
         </Link>
       </div>
