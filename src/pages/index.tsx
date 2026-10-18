@@ -38,16 +38,16 @@ const aboutStats = [
 
 const projects = [
   {
-    title: "Unqueue",
-    description: "E-commerce platform for selling digital products",
+    title: "Profil Bandung",
+    description: "Website profil Bandung",
     image: "/assets/unqueue.webm",
-    href: "https://unqueue.shop/",
+    href: "https://profilbandung.vercel.app/",
   },
   {
-    title: "InfiniteVPS",
-    description: "High performance VPS hosting solution",
+    title: "Aplikasi Zakat Fitrah",
+    description: "Aplikasi pengelolaan zakat fitrah",
     image: "/assets/infinitevps.webm",
-    href: "#",
+    href: "https://aplikasi-zakat-fitrah.vercel.app/",
   },
   {
     title: "TranslateBot",
@@ -339,14 +339,16 @@ export default function Home() {
           </div>
           <div data-scroll data-scroll-speed=".4" className="my-64">
             <span className="text-gradient clash-grotesk text-sm font-semibold tracking-tighter">
-              ✨ Projects
+              ✨ Projects & Experiences
             </span>
             <h2 className="mt-3 text-4xl font-semibold tracking-tight tracking-tighter xl:text-6xl">
-              Streamlined digital experiences.
+              Building skills. Creating impact.
             </h2>
             <p className="mt-1.5 text-base tracking-tight text-muted-foreground xl:text-lg">
-              I&apos;ve worked on a variety of projects, from small websites to
-              large-scale web applications. Here are some of my favorites:
+              From software development and computer engineering projects to
+              organizational experiences, this is where I showcase my technical
+              skills, creativity, leadership, and contributions as a Computer
+              Engineering student at Diponegoro University.
             </p>
 
             {/* Carousel */}

@@ -55,6 +55,21 @@
         ),
         url("/assets/contact-background.jpeg") center 43% / cover no-repeat;
 }
+.contactCard::after {
+    position: absolute;
+    z-index: 0;
+    inset: -25%;
+    background:
+        radial-gradient(ellipse at 20% 25%, rgb(99 102 241 / 0.62), transparent 42%),
+        radial-gradient(ellipse at 78% 35%, rgb(34 211 238 / 0.48), transparent 40%),
+        radial-gradient(ellipse at 62% 82%, rgb(217 70 239 / 0.42), transparent 44%);
+    background-size: 150% 150%;
+    animation: contactGlow 16s ease-in-out infinite alternate;
+    content: "";
+    mix-blend-mode: screen;
+    opacity: 0.42;
+    pointer-events: none;
+}
 .contactCard > * {
     position: relative;
     z-index: 1;
@@ -63,10 +78,33 @@
     background:
         linear-gradient(
             135deg,
-            hsl(var(--background) / 0.58),
-            hsl(var(--background) / 0.4)
+            hsl(var(--background) / 0.42),
+            hsl(var(--background) / 0.3)
         ),
         url("/assets/contact-background.jpeg") center 43% / cover no-repeat;
+}
+:global(html[data-theme="light"]) .contactCard::after {
+    background:
+        radial-gradient(ellipse at 20% 25%, rgb(129 140 248 / 0.58), transparent 42%),
+        radial-gradient(ellipse at 78% 35%, rgb(34 211 238 / 0.5), transparent 40%),
+        radial-gradient(ellipse at 62% 82%, rgb(232 121 249 / 0.48), transparent 44%);
+    mix-blend-mode: multiply;
+    opacity: 0.38;
+}
+@keyframes contactGlow {
+    from {
+        background-position: 0% 20%, 100% 0%, 40% 100%;
+        transform: scale(1);
+    }
+    to {
+        background-position: 100% 80%, 0% 100%, 80% 0%;
+        transform: scale(1.12);
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .contactCard::after {
+        animation: none;
+    }
 }
 
 /* scroll down */
