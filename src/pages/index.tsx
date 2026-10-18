@@ -136,7 +136,7 @@ const services = [
 ];
 
 export default function Home() {
-  const refScrollContainer = useRef(null);
+  const refScrollContainer = useRef<HTMLDivElement>(null);
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const [carouselApi, setCarouselApi] = useState<CarouselApi | null>(null);
   const [current, setCurrent] = useState<number>(0);
@@ -152,9 +152,23 @@ export default function Home() {
     const navLinks = document.querySelectorAll(".nav-link");
 
     async function getLocomotive() {
+      const scrollContainer = refScrollContainer.current;
+      if (!scrollContainer) return;
+
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        scrollContainer
+          .querySelectorAll("h1, h2, h3, h4, h5, h6")
+          .forEach((heading) => {
+            if (!heading.hasAttribute("data-scroll")) {
+              heading.setAttribute("data-scroll", "");
+              heading.setAttribute("data-scroll-speed", ".02");
+            }
+          });
+      }
+
       const Locomotive = (await import("locomotive-scroll")).default;
       new Locomotive({
-        el: refScrollContainer.current ?? new HTMLElement(),
+        el: scrollContainer,
         smooth: true,
       });
     }
@@ -520,7 +534,10 @@ export default function Home() {
               </div>
             </div>
 
-            <h3 className="mt-16 text-2xl font-semibold tracking-tight xl:text-3xl">
+            <h3
+              id="experiences"
+              className="mt-16 text-2xl font-semibold tracking-tight xl:text-3xl"
+            >
               Experiences
             </h3>
 
